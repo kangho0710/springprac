@@ -14,7 +14,6 @@
 		<input type = "text" name = "siSupplier" placeholder = "유통사">
 		<button>조회</button>
 	</form>
-	<button onclick="location.href='/views/shop-info/shopinsert'">추가하기</button>
 	
 	<table border="1">
 		<tr>

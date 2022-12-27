@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.demo.mapper.KtRolsterMapper">
+  <select id="selectKtList" resultType="com.ezen.demo.vo.KtRolsterVO">
+    SELECT * FROM KT_ROLSTER
+    <where>
+    	<if test = 'ktName!=null and ktName!=""'>
+    		AND KT_NAME LIKE CONCAT('%',#{ktName},'%')
+    	</if>
+    	<if test = 'ktId!=null and ktId!=""'>
+    		AND KT_ID LIKE CONCAT('%',#{ktId},'%')
+    	</if>
+    </where>
+  </select>
+</mapper>
