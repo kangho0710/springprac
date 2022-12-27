@@ -3,13 +3,14 @@ package com.ezen.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.ezen.demo.service.UserInfoService;
 import com.ezen.demo.vo.UserInfoVO;
 
-@RestController
+@Controller
 public class UserInfoController {
 
 /*
@@ -23,7 +24,8 @@ public class UserInfoController {
 	private UserInfoService userInfoService;
 	
 	@GetMapping("/user-infos")
-	public List<UserInfoVO> getUserInfos(){
-		return userInfoService.getUserInfos();
+	public String getUserInfos(Model model){
+		model.addAttribute("userList", userInfoService.getUserInfos());
+		return "views/user-info/list";
 	}
 }
