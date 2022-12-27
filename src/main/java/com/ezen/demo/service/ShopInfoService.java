@@ -16,4 +16,12 @@ public class ShopInfoService {
 	public List<ShopInfoVO> getShopInfoList(ShopInfoVO shopInfoVO){
 		return shopInfoMapper.selectShopInfoList(shopInfoVO);
 	}
+	
+	public String insertShopInfo(ShopInfoVO shopInfo) {
+		return shopInfoMapper.insertShopInfo(shopInfo);
+	}
+	
+	public ShopInfoVO selectShopInfo(ShopInfoVO shopInfoVO) {
+		return shopInfoMapper.selectShopInfo(shopInfoVO);
+	}
 }

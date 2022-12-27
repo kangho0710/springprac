@@ -18,4 +18,13 @@
 			
 		</where>
 	</select>
+	
+	<select id="insertShopInfoList" resultType="com.ezen.demo.vo.ShopInfoVO">
+		INSERT INTO SHOP_INFO(SI_CODE, SI_NAME, SI_CATEGORY, SI_STOCK, SI_SUPPLIER, SI_PRICE, SI_ETC)
+		VALUES(#{siCode}, #{siName}, #{siCategory}, #{siStock}, #{siSupplier}, #{siPrice}, #{siEtc})
+	</select>
+	
+	<select id="selectShopInfo" resultType="com.ezen.demo.vo.ShopInfoVO">
+		SELECT SI_NUM, SI_CODE, SI_NAME, SI_CATEGORY, SI_STOCK, SI_SUPPLIER, SI_PRICE, SI_ETC FROM SHOP_INFO WHERE SI_NUM=#{siNum}
+	</select>
 </mapper>
