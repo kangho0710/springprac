@@ -10,4 +10,6 @@ public class UserInfoVO {
 	private String uiPwd;
 	private String uiAddr;
 	private String uiEmail;
+	private String searchText;
+	private String searchType;
 }

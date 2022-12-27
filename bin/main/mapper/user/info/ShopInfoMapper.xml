@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.demo.mapper.ShopInfoMapper"> <!-- 적용되는 위치 -->
+	<select id="selectShopInfoList" resultType="com.ezen.demo.vo.ShopInfoVO"> <!-- id=메서드 명-->
+		SELECT * FROM SHOP_INFO
+		<where>
+			<if test = 'siName!=null and siName!=""' >
+				AND SI_NAME LIKE CONCAT('%',#{siName},'%')			
+			</if>
+			<if test = 'siCategory!=null and siCategory!="" ' >
+				AND SI_CATEGORY LIKE CONCAT('%',#{siCategory},'%')
+			</if>
+			<if test = 'siSupplier!=null and siSupplier!="" ' >
+				AND SI_SUPPLIER LIKE CONCAT('%',#{siSupplier},'%')
+			</if>
+			
+		</where>
+	</select>
+</mapper>

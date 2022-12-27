@@ -6,6 +6,6 @@ import com.ezen.demo.vo.UserInfoVO;
 
 public interface UserInfoMapper {
 	
-	List<UserInfoVO> selectUserInfoList();
+	List<UserInfoVO> selectUserInfoList(UserInfoVO userInfo);
 	
 }
