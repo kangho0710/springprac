@@ -10,13 +10,14 @@
 </head>
 <body>
 	<form action="/kt-list">
-		<input type = "text" name = "ktName" placeholder = "이름">
-		<input type = "text" name = "ktId" placeholder = "닉네임">
+		<input type = "text" name = "ktName" value = "${param.ktName}" placeholder = "이름">
+		<input type = "text" name = "ktId" value = "${param.ktId}" placeholder = "닉네임">
 		<button>조회</button>
 	</form>
 	
 	<table border="1">
 		<tr>
+			<th>번호</th>
 			<th>이름</th>
 			<th>닉네임</th>
 			<th>나이</th>
@@ -25,7 +26,8 @@
 		</tr>
 
 		<c:forEach items="${ktList }" var="kt">
-			<tr>
+			<tr style="cursor:pointer" onclick="location.href= '/kt-list/select?ktNum=${kt.ktNum }'">
+				<td>${kt.ktNum }</td>
 				<td>${kt.ktName }</td>
 				<td>${kt.ktId }</td>
 				<td>${kt.ktAge }</td>
@@ -34,5 +36,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	
+	<button onclick= "location.href= '/views/ktrolster/kt-insert'">등록</button>
 </body>
 </html>

@@ -14,4 +14,27 @@
     	</if>
     </where>
   </select>
+  
+  <select id="selectKt" resultType="com.ezen.demo.vo.KtRolsterVO">
+  	SELECT * FROM KT_ROLSTER WHERE KT_NUM= #{ktNum}
+  </select>
+  
+  <insert id="insertKt" parameterType="com.ezen.demo.vo.KtRolsterVO">
+	INSERT INTO KT_ROLSTER(KT_NAME, KT_ID, KT_AGE, KT_KDA, KT_PROFILE)
+	VALUES(#{ktName}, #{ktId}, #{ktAge}, #{ktKda}, #{ktProfile})
+  </insert>
+  
+  <update id="updateKt" parameterType = "com.ezen.demo.vo.KtRolsterVO">
+  	UPDATE KT_ROLSTER SET
+	KT_NAME = #{ktName},
+	KT_ID = #{ktId},
+	KT_AGE= #{ktAge},
+	KT_KDA=#{ktKda},
+	KT_PROFILE= #{ktProfile}
+	WHERE KT_NUM=#{ktNum};
+  </update>
+  
+  <delete id="deleteKt" parameterType="com.ezen.demo.vo.KtRolsterVO">
+  	DELETE FROM KT_ROLSTER WHERE KT_NUM = #{ktNum}
+  </delete>
 </mapper>

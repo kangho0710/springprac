@@ -17,4 +17,20 @@ public class KtRolsterService {
 	public List<KtRolsterVO> getKtRolsterList(KtRolsterVO ktRolster){
 		return ktRolsterMapper.selectKtList(ktRolster);
 	}
+	
+	public KtRolsterVO getKtRolster(KtRolsterVO ktRolster) {
+		return ktRolsterMapper.selectKt(ktRolster);
+	}
+	
+	public int insertKt(KtRolsterVO ktRolster) {
+		return ktRolsterMapper.insertKt(ktRolster);
+	}
+	
+	public int updateKt(KtRolsterVO ktRolster) {
+		return ktRolsterMapper.updateKt(ktRolster);
+	}
+	
+	public int deleteKt(int ktNum) {
+		return ktRolsterMapper.deleteKt(ktNum);
+	}
 }
