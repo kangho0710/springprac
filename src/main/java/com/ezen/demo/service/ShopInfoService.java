@@ -17,11 +17,18 @@ public class ShopInfoService {
 		return shopInfoMapper.selectShopInfoList(shopInfoVO);
 	}
 	
-	public String insertShopInfo(ShopInfoVO shopInfo) {
+	public ShopInfoVO selectShopInfo(ShopInfoVO shopInfo) {
+		return shopInfoMapper.selectShopInfo(shopInfo);
+	}
+	public int insertShopInfo(ShopInfoVO shopInfo) {
 		return shopInfoMapper.insertShopInfo(shopInfo);
 	}
-	
-	public ShopInfoVO selectShopInfo(ShopInfoVO shopInfoVO) {
-		return shopInfoMapper.selectShopInfo(shopInfoVO);
+	public int updateShopInfo(ShopInfoVO shopInfo) {
+		return shopInfoMapper.updateShopInfo(shopInfo);
 	}
+	public int deleteShopInfo(int siNum) {
+		return shopInfoMapper.deleteShopInfo(siNum);
+	}
+	
+	
 }

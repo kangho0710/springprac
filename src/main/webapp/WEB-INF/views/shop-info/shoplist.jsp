@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/shop-list">
+<form action="/shop-infos">
 		<input type = "text" name = "siName" placeholder = "상품이름">
 		<input type = "text" name = "siCategory" placeholder = "카테고리">
 		<input type = "text" name = "siSupplier" placeholder = "유통사">
@@ -25,7 +25,7 @@
 		</tr>
 
 		<c:forEach items="${shopList }" var="shop">
-			<tr>
+			<tr style="cursor:pointer" onclick="location.href= '/shop-info?siNum=${shop.siNum}'">
 				<td>${shop.siCode }</td>
 				<td>${shop.siName }</td>
 				<td>${shop.siCategory }</td>
@@ -34,5 +34,6 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<button onclick="location.href='/views/shop-info/shopinsert'">등록</button>
 </body>
 </html>
