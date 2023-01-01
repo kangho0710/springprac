@@ -2,6 +2,7 @@ package com.ezen.demo.vo;
 
 import lombok.Data;
 
+
 @Data
 public class StudentPointVO {
 	private int spNum;

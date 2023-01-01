@@ -20,7 +20,7 @@
 		<tbody id = "tBody">
 		</tbody>
 	</table>
-	<button onclick = "">등록</button>
+	<button onclick = "location.href = '/views/student-point/insert'">등록</button>
 	<script>
 	
 		function getStudentPoints(){
@@ -33,7 +33,7 @@
 				let html='';
 				for(let i=0; i<data.length; i++){
 					const studentPoint = data[i];
-					html+='<tr>';
+					html+= '<tr style="cursor:pointer" onclick="location.href=\'/views/student-point/view?spNum='+ studentPoint.spNum +'\' ">';
 					html+='<td>' + studentPoint.spNum + '</td>';
 					html+='<td>' + studentPoint.spName + '</td>';
 					html+='<td>' + studentPoint.spKorPoint + '</td>';

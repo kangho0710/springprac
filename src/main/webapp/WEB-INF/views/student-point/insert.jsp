@@ -31,6 +31,7 @@
 		.then(function(data){
 			if(data==1){
 				alert('성공');
+				location.href = '/views/student-point/list';
 			}
 		});
 	}

@@ -30,7 +30,7 @@ public class StudentPointService {
 		return studentPointMapper.updateStudentPoint(studentPointVO);
 	}
 	
-	public int deleteStudentPoint(StudentPointVO studentPointVO) {
-		return studentPointMapper.deleteStudentPoint(studentPointVO);
+	public int deleteStudentPoint(int spNum) {
+		return studentPointMapper.deleteStudentPoint(spNum);
 	}
 }
