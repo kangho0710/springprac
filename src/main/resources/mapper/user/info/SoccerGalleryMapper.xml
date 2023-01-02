@@ -13,24 +13,37 @@
 	</select>
 	
 	<select id="selectSoccerGallery" resultType="com.ezen.demo.vo.SoccerGalleryVO">
-		SELECT SO_ID, SO_TITLE, SO_TEAM, SO_CNT, MODDAT FROM SOCCER_GALLERY WHERE SO_NUM=#{soNum}
+		SELECT SO_NUM, SO_ID, SO_TITLE, SO_TEAM, SO_CONTENT, SO_CNT, MODDAT FROM SOCCER_GALLERY WHERE SO_NUM=#{soNum}
 	</select>
 	
 	<insert id="insertSoccerGallery" parameterType="com.ezen.demo.vo.SoccerGalleryVO">
 		INSERT INTO SOCCER_GALLERY(SO_ID, SO_TITLE, SO_CONTENT, SO_TEAM)
-		VALUES(#{soID}, #{soTitle}, #{soContent}, #{soTeam})
+		VALUES(#{soId}, #{soTitle}, #{soContent}, #{soTeam})
 	</insert>
 	
 	<update id="updateSoccerGallery" parameterType="com.ezen.demo.vo.SoccerGalleryVO">
 		UPDATE SOCCER_GALLERY SET
 		SO_ID = #{soId},
 		SO_TITLE =#{soTitle},
-		SO_CONTENT = #{soContente},
+		SO_CONTENT = #{soContent},
 		SO_TEAM = #{soTeam},
 		MODDAT = NOW()
 		WHERE SO_NUM = #{soNum};
 	</update>
 	
-	<delete id="deleteSoccerGallery" parameterType="com.ezen.demo.vo.SoccerGalleryVO"></delete>
+	<delete id="deleteSoccerGallery" parameterType="com.ezen.demo.vo.SoccerGalleryVO">
+		DELETE FROM SOCCER_GALLERY WHERE SO_NUM=#{soNum}
+	</delete>
+	
+	<delete id = "deleteSoccerGalleries" parameterType="com.ezen.demo.vo.SoccerGalleryVO">
+		DELETE FROM SOCCER_GALLERY
+		<where>
+		<if test = 'soNums != null and soNums.size!=0'>
+			<foreach collection="soNums" item = "soNum" separator = "OR">
+				SO_NUM = #{soNum}
+			</foreach>
+		</if>
+		</where>
+	</delete>
 	
 </mapper>

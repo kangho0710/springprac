@@ -25,6 +25,48 @@
 	<button onclick = "deleteStudentPoints()">삭제</button>
 	
 	<script>
+	
+		function deleteStudentPoints(){
+			const soNumObjs = document.querySelectorAll('input[name="soNums"]:checked');
+			const soNums = [];
+			for(const soNumObj of soNumObjs){
+				soNums.push(soNumObj.value);
+			}
+			
+			if(soNums.length ===0){
+				alert('선택바람');
+				return;
+			}
+			
+			const param = {
+					soNums:soNums
+			}
+			fetch('/soccergallery/deletes',{
+				method: 'DELETE',
+				headers: {
+					 'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(param)
+			})
+			.then(function(res){
+				return res.json();
+			})
+			.then(function(data){
+				if(data>=1){
+					alert('성공');
+					location.href='/views/soccergallery/list';
+				}
+			})
+		}
+		
+		function toggleCheck(obj){
+			const soNums = document.querySelectorAll('input[name=soNums]');
+			for(const soNum of soNums){
+				soNum.checked = obj.checked;
+			}
+		}
+		
+		
 		function getSoccerGalleryList(){
 			fetch('/soccergallery')
 			.then(function(res){
@@ -36,11 +78,21 @@
 					const soccerGallery = data[i];
 					html += '<tr>'
 					html += '<td><input type="checkbox" name = "soNums" value="'+ soccerGallery.soNum + '"></td>'
-					html += '<td><a href = "/views/soccergallery/select?soNum=' + soccerGallery.soNum + '"></td>'
+					html += '<td>' + soccerGallery.soNum + '</td>';
+					html += '<td><a href = "/views/soccergallery/select?soNum=' + soccerGallery.soNum + '">'+soccerGallery.soTitle+'</td>'
+					html += '<td>' +soccerGallery.soId + '</td>';
+					html += '<td>' +soccerGallery.soTeam + '</td>';
+					html += '<td>' +soccerGallery.soCnt + '</td>';
+					html += '<td>' +soccerGallery.moddat + '</td>';
 					html += '</tr>'
 				}
-			})
+				document.querySelector('#tBody').innerHTML = html;
+			});
+			
 		}
+			window.onload = function(){
+				getSoccerGalleryList();
+			}
 	</script>
 
 </body>

@@ -11,12 +11,12 @@ import com.ezen.demo.vo.SoccerGalleryVO;
 @Service
 public class SoccerGalleryService {
 	@Autowired
-	SoccerGalleryMapper soccerGalleryMapper;
+	private SoccerGalleryMapper soccerGalleryMapper;
 	
-	List<SoccerGalleryVO> selectSoccerGalleryList(SoccerGalleryVO soccerGallery){
+	public List<SoccerGalleryVO> selectSoccerGalleryList(SoccerGalleryVO soccerGallery){
 		return soccerGalleryMapper.selectSoccerGalleryList(soccerGallery);
 	}
-	SoccerGalleryVO selectSoccerGallery(int soNum) {
+	public SoccerGalleryVO selectSoccerGallery(int soNum) {
 		return soccerGalleryMapper.selectSoccerGallery(soNum);
 	}
 	
@@ -29,5 +29,9 @@ public class SoccerGalleryService {
 	
 	public int deleteSoccerGallery(int soNum) {
 		return soccerGalleryMapper.deleteSoccerGallery(soNum);
+	}
+	
+	public int deleteSoccerGalleries(List<Integer> soNums) {
+		return soccerGalleryMapper.deleteSoccerGalleries(soNums);
 	}
 }
