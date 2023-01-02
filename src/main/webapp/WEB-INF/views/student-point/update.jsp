@@ -37,7 +37,7 @@
 	}
 	
 	function updateStudentPoint(){
-		const spNum= document.querySelector('#spNum').value;
+		const spNum= '${param.spNum}'
 		const sp = getParams();
 				 
 		fetch('/student-points/update/'+spNum,{
@@ -45,7 +45,7 @@
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(sp, spNum)
+			body: JSON.stringify(sp)
 			
 		})
 		.then(function(res){
@@ -60,14 +60,13 @@
 	}
 	
 	function deleteStudentPoint(){
-		const spNum= document.querySelector('#spNum').value;
+		const spNum= '${param.spNum}'
 		
 		fetch('/student-points/delete/'+spNum, {
 			method:'DELETE',
 			headers:{
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(spNum)
 		})
 		.then(function(res){
 			return res.json();

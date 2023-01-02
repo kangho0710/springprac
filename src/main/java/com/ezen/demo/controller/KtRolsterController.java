@@ -51,7 +51,7 @@ public class KtRolsterController {
 	
 	@PatchMapping("/kt-list/update/{ktNum}")
 	@ResponseBody
-	public int updateKtRolster(@RequestBody KtRolsterVO ktRolster, @RequestBody @PathVariable("ktNum") int ktNum) {
+	public int updateKtRolster(@RequestBody KtRolsterVO ktRolster, @PathVariable("ktNum") int ktNum) {
 		ktRolster.setKtNum(ktNum);
 		return ktRolsterService.updateKt(ktRolster);
 	}

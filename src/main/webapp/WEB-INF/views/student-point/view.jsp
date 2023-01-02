@@ -46,7 +46,6 @@
 <script>
 	window.onload= function(){
 		const spNum = '${param.spNum}';
-		alert(spNum);
 		
 		fetch('/student-points/view?spNum='+spNum)
 		.then(function(res){

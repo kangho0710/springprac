@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ezen.demo.mapper.StudentPointMapper;
 import com.ezen.demo.service.StudentPointService;
 import com.ezen.demo.vo.StudentPointVO;
 
@@ -47,15 +48,20 @@ public class StudentPointController {
 	
 	@PatchMapping("/student-points/update/{spNum}")
 	@ResponseBody
-	public int updateStudentPoint(@RequestBody StudentPointVO studentPoint, @RequestBody @PathVariable("spNum") int spNum){
+	public int updateStudentPoint(@RequestBody StudentPointVO studentPoint, @PathVariable("spNum") int spNum){
 		studentPoint.setSpNum(spNum);
-		
 		return studentPointService.updateStudentPoint(studentPoint);
 	}
 	
 	@DeleteMapping("/student-points/delete/{spNum}")
 	@ResponseBody
-	public int deletStudentPoint(@RequestBody @PathVariable("spNum") int spNum) {
+	public int deletStudentPoint(@PathVariable("spNum") int spNum) {
 		return studentPointService.deleteStudentPoint(spNum);
+	}
+	
+	@DeleteMapping("/student-points/deletes")
+	@ResponseBody
+	public int deleteStudentPoints(@RequestBody StudentPointVO studentPoint) {
+		return studentPointService.deleteStudentPoints(studentPoint.getSpNums());
 	}
 }

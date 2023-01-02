@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.demo.mapper.SoccerGalleryMapper">
+	<select id="selectSoccerGalleryList" resultType="com.ezen.demo.vo.SoccerGalleryVO">
+		SELECT SO_NUM, SO_ID, SO_TITLE, SO_TEAM, SO_CNT,  MODDAT FROM SOCCER_GALLERY
+		<where>
+			<if test = 'soTitle != null and soTitle != ""'>
+				AND SO_TITLE LIKE CONCAT('%', #{soTitle}, '%')
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectSoccerGallery" resultType="com.ezen.demo.vo.SoccerGalleryVO">
+		SELECT SO_ID, SO_TITLE, SO_TEAM, SO_CNT, MODDAT FROM SOCCER_GALLERY WHERE SO_NUM=#{soNum}
+	</select>
+	
+	<insert id="insertSoccerGallery" parameterType="com.ezen.demo.vo.SoccerGalleryVO">
+		INSERT INTO SOCCER_GALLERY(SO_ID, SO_TITLE, SO_CONTENT, SO_TEAM)
+		VALUES(#{soID}, #{soTitle}, #{soContent}, #{soTeam})
+	</insert>
+	
+	<update id="updateSoccerGallery" parameterType="com.ezen.demo.vo.SoccerGalleryVO">
+		UPDATE SOCCER_GALLERY SET
+		SO_ID = #{soId},
+		SO_TITLE =#{soTitle},
+		SO_CONTENT = #{soContente},
+		SO_TEAM = #{soTeam},
+		MODDAT = NOW()
+		WHERE SO_NUM = #{soNum};
+	</update>
+	
+	<delete id="deleteSoccerGallery" parameterType="com.ezen.demo.vo.SoccerGalleryVO"></delete>
+	
+</mapper>

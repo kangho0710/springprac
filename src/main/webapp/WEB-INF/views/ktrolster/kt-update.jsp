@@ -23,7 +23,7 @@
 	
 	<script>
 		function updateKtRolster(){
-			const ktNum = document.querySelector('#ktNum').value;
+			const ktNum = '${param.ktNum}'
 			const kt = getParams();
 			
 			fetch('/kt-list/update/'+ktNum, {
@@ -31,7 +31,7 @@
 				headers:{
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify(kt, ktNum)
+				body: JSON.stringify(kt)
 			})
 			.then(function (res){
 				return res.json();
@@ -45,7 +45,7 @@
 		}
 		
 		function deleteKtRolster(){
-			const ktNum= document.querySelector('#ktNum').value;
+			const ktNum= '${param.ktNum}'
 			
 			fetch('/kt-list/delete/' + ktNum,{
 				method:'DELETE',

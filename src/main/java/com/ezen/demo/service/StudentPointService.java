@@ -33,4 +33,8 @@ public class StudentPointService {
 	public int deleteStudentPoint(int spNum) {
 		return studentPointMapper.deleteStudentPoint(spNum);
 	}
+	
+	public int deleteStudentPoints(List<Integer> spNums) {
+		return studentPointMapper.deleteStudentPoints(spNums);
+	}
 }

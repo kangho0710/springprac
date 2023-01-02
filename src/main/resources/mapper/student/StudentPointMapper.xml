@@ -9,6 +9,46 @@
     	<if test = 'spName!=null and spName!=""' >
     		AND SP_NAME LIKE CONCAT('%',#{spName},'%')
     	</if>
+    	
+    	<if test = 'spKorPoint1!=0'>
+    			AND SP_KOR_POINT >= #{spKorPoint1}
+    	</if>
+		<if test='spKorPoint2!=0'>
+			<![CDATA[
+			AND SP_KOR_POINT <= #{spKorPoint2}
+			]]>
+		</if>
+		
+		<if test = 'spEngPoint1!=0'>
+			AND SP_ENG_POINT >= #{spEngPoint1}
+		</if>
+		<if test = 'spEngPoint2!=0'>
+			<![CDATA[
+				AND SP_ENG_POINT <= #{spEngPoint2}
+			]]>
+		</if>
+		
+		<if test = 'spMathPoint1!=0'>
+			AND SP_Math_POINT >= #{spMathPoint1}
+		</if>
+		<if test = 'spMathPoint2!=0'>
+			<![CDATA[
+				AND SP_MATH_POINT <= #{spMathPoint2}
+			]]>
+		</if>
+		
+		<if test = 'spTotalPoint1!=0'>
+			<![CDATA[
+				AND (SP_KOR_POINT + SP_ENG_POINT + SP_MATH_POINT) <= #{spTotalPoint1}
+			]]>
+		</if>
+		
+		<if test = 'spMathPoint2!=0'>
+			<![CDATA[
+				AND (SP_KOR_POINT + SP_ENG_POINT + SP_MATH_POINT) >= #{spTotalPoint2}
+			]]>
+		</if>
+		
     </where>
   </select>
   
@@ -35,5 +75,15 @@
   	DELETE FROM STUDENT_POINT WHERE SP_NUM = #{spNum}
   </delete>
   
+  
+  <delete id="deleteStudentPoints" parameterType="com.ezen.demo.vo.StudentPointVO"> <!--여러개 삭제-->
+  	DELETE FROM STUDENT_POINT
+  	<where>
+  		<if test = 'spNums != null and spNums.size!=0'></if>
+  			<foreach collection = "spNums" item="spNum" separator = "OR">
+  				SP_NUM = #{spNum}
+  			</foreach>
+  	</where>
+  </delete>
   
 </mapper>
