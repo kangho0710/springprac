@@ -50,8 +50,8 @@ public class UserInfoController {
 		UserInfoVO loginUserInfo = userInfoService.login(userInfo);
 		if(loginUserInfo !=null) {
 			session.setAttribute("userInfo", loginUserInfo);
+			loginUserInfo.setUiPwd(null);
 		}
-		loginUserInfo.setUiPwd(null);
 		return loginUserInfo;
 	}
 	

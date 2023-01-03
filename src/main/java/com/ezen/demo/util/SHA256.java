@@ -9,14 +9,16 @@ public class SHA256 {
 
 	public static String encode(String source) {
 		try {
-			MessageDigest md = MessageDigest.getInstance("SHA256");
+			MessageDigest md = MessageDigest.getInstance("SHA256"); //message digest: 메시지를 해시함
 			md.update((SALT + source).getBytes());
-			byte[] bytes = md.digest();
+			
+			byte[] bytes = md.digest(); //digest()메서드는 업데이트된 md값을 가져옴 bytes = SALT+source
 			StringBuffer sb = new StringBuffer();
 			for(byte b : bytes) {
 				sb.append(String.format("%02X", b)); //바이트를  스트링형태로 바꿔서 추가
 			}
 			return sb.toString();
+			
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
