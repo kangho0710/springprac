@@ -23,12 +23,11 @@ public class UserInfoService {
 		return userInfoMapper.selectUserInfoList(userInfo);
 	}
 	
-	public boolean login(UserInfoVO userInfo, HttpSession session) {
-		String uiPwd = userInfo.getUiPwd();
-		String encodePwd = SHA256.encode(uiPwd);
-		userInfo.setUiPwd(encodePwd);
-		return ;
+	public UserInfoVO login(UserInfoVO userInfo) {
+		userInfo.setUiPwd(SHA256.encode(userInfo.getUiPwd()));
+		return userInfoMapper.selectUserInfo(userInfo);		
 	}
+	
 	public boolean existsUserId(String uiId) {
 		if(userInfoMapper.selectUserInfoById(uiId)==null) {
 			return false;

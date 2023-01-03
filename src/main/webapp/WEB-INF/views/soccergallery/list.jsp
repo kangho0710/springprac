@@ -57,14 +57,14 @@
 					location.href='/views/soccergallery/list';
 				}
 			})
-		}
+		} //체크된거 삭제
 		
 		function toggleCheck(obj){
 			const soNums = document.querySelectorAll('input[name=soNums]');
 			for(const soNum of soNums){
 				soNum.checked = obj.checked;
 			}
-		}
+		} //체크박스
 		
 		
 		function getSoccerGalleryList(){

@@ -46,10 +46,9 @@ public class UserInfoController {
 	}
 	
 	@PostMapping("/login")
-	@ResponseBody
-	public boolean loginUserId(@RequestBody UserInfoVO userInfo, HttpSession session){
+	public @ResponseBody UserInfoVO login(@RequestBody UserInfoVO userInfo, HttpSession session) {
 		UserInfoVO loginUserInfo = userInfoService.login(userInfo);
-		if(loignUserInfo != null) {
+		if(loginUserInfo !=null) {
 			session.setAttribute("userInfo", loginUserInfo);
 		}
 		loginUserInfo.setUiPwd(null);

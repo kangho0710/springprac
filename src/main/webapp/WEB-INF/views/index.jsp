@@ -10,5 +10,6 @@
 안녕하세요
 <a href="/shop-infos">상품목록</a>
 <a href = "/views/user-info/join">회원가입</a>
+<a href = "/views/user-info/login">로그인</a>
 </body>
 </html>

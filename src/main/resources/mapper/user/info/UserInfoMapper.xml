@@ -35,13 +35,12 @@
 		WHERE UI_ID = #{uiId}
 	</select>
 	
-	<select id="selectUserInfo" resultType = "com.ezen.demo.vo.UserInfoVO">
-		SELECT UI_NAME, UI_ID, UI_PWD, UI_EMAIL, UI_ZIP, 
-		UI_ADDR1, UI_ADDR2, UI_PROFILE 
-		FROM USER_INFO WHERE UI_ID=#{uiId} AND UI_PWD=#{uiPwd}
-		<if test = 'uiPwd !=null and uiPwd!=""'>
-			
-		</if>
+	<select id="selectUserInfo" resultType="com.ezen.demo.vo.UserInfoVO">
+		SELECT
+		<include refid="userInfoCols"></include> 
+		FROM USER_INFO
+		WHERE UI_ID = #{uiId}
+		AND  UI_PWD = #{uiPwd}
 	</select>
 	
 	

@@ -9,5 +9,6 @@ public interface UserInfoMapper {
 	
 	List<UserInfoVO> selectUserInfoList(UserInfoVO userInfo);
 	UserInfoVO selectUserInfoById(String uiId);
+	UserInfoVO selectUserInfo(UserInfoVO userInfo); //로그인
 	int insertUserInfo(UserInfoVO userInfo);
 }
