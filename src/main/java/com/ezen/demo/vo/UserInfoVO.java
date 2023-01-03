@@ -5,11 +5,16 @@ import lombok.Data;
 @Data
 public class UserInfoVO {
 	private int uiNum;
-	private String uiName;
 	private String uiId;
+	private String uiName;
 	private String uiPwd;
-	private String uiAddr;
 	private String uiEmail;
+	private String uiZip;
+	private String uiAddr1;
+	private String uiAddr2;
+	private String uiProfile;
+	private String uiProfileImgPath;
+	
 	private String searchText;
 	private String searchType;
 }
