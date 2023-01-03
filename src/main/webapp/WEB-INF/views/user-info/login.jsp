@@ -8,8 +8,7 @@
 </head>
 <body>
 	<input type="text" id="uiId" placeholder="id"><br>
-<input type="text" id="uiPwd" placeholder="pwd"><br>
-	<br>
+	<input type="password" id="uiPwd" placeholder="pwd"><br>
 	<button onclick = "login()">로그인</button>
 	
 	<script>
@@ -31,7 +30,7 @@
 			})
 			.then(function(data){
 				if(data && data.uiName){
-					alert(uiName + '님 로그인 완료!');
+					alert(data.uiName + '님 로그인 완료!');
 					location.href='/';
 				}
 			})
