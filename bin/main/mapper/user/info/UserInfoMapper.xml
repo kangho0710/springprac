@@ -45,6 +45,18 @@
 	<delete id ="deleteUserInfo" parameterType="com.ezen.demo.vo.UserInfoVO">
 		DELETE FROM USER_INFO WHERE UI_NUM = #{uiNum}
 	</delete>
+	
+	<!-- 정보수정 -->
+	<update id="updateUserInfo"  parameterType="com.ezen.demo.vo.UserInfoVO"> 
+		UPDATE USER_INFO
+		SET UI_NAME=#{uiName},
+		UI_ZIP=#{uiZip},
+		UI_ADDR1=#{uiAddr1},
+		UI_ADDR2=#{uiAddr2},
+		UI_EMAIL=#{uiEmail},
+		UI_PROFILE=#{uiProfile}
+		WHERE UI_NUM=#{uiNum}
+	</update>
 
 
 </mapper>

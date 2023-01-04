@@ -48,4 +48,8 @@ public class UserInfoService {
 		return false;
 	}
 	
+	public boolean updateUserInfo(UserInfoVO userInfo) {
+		return userInfoMapper.updateUserInfo(userInfo)==1;
+	}
+	
 }
