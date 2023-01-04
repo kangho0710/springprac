@@ -1,17 +1,13 @@
 package com.ezen.demo.mapper;
 
-import java.util.List;
-import java.util.Map;
-
 import com.ezen.demo.vo.UserInfoVO;
 
 public interface UserInfoMapper {
 	
-	List<UserInfoVO> selectUserInfoList(UserInfoVO userInfo);
-	UserInfoVO selectUserInfoById(String uiId);
-	UserInfoVO selectUserInfo(UserInfoVO userInfo); //로그인
-	int insertUserInfo(UserInfoVO userInfo);
+	UserInfoVO selectUserInfoByIdAndPwd(UserInfoVO userInfo); //로그인 매퍼
+	UserInfoVO selectUserInfoById(String uiId); //id중복확인 매퍼
+	int insertUserInfo(UserInfoVO userInfo); //회원가입 매퍼
 	
-	UserInfoVO selectUserInfoByNum(int uiNum);
-	int deleteUserInfo(int uiNum);
+	UserInfoVO selectUserInfoByNum(int uiNum); //
+	int deleteUserInfo(int uiNum); //회원탈퇴
 }
