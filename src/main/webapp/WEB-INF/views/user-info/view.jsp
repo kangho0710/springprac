@@ -54,7 +54,16 @@ function passwordConfirm(){
 		return res.json();
 	})
 	.then(function(data){
-		console.log(data);
+		if(data===true){
+			if(_type==='update'){
+				location.href = '/views/user-info/update';
+			} else if(_type==='delete'){
+				alert('삭제완료');
+				location.href = '/';
+			}
+		} else{
+			alert('비밀번호 다시 확인');
+		}
 	})
 		
 }
