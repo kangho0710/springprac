@@ -41,4 +41,25 @@ public class UserInfoService {
 		userInfo.setUiPwd(encodePwd);
 		return userInfoMapper.insertUserInfo(userInfo);
 	}
+	
+	public boolean checkPassword(UserInfoVO userInfo, int uiNum) {
+		UserInfoVO tmpUserInfo = userInfoMapper.selectUserInfoByNum(uiNum);
+		if(tmpUserInfo!=null) {
+			String uiPwd = userInfo.getUiPwd();
+			String encodePwd = SHA256.encode(uiPwd);
+			if(encodePwd.equals(tmpUserInfo.getUiPwd())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean removeUserInfo(UserInfoVO userInfo, int uiNum) {
+		if(checkPassword(userInfo, uiNum)) {
+			if(userInfoMapper.deleteUserInfo(uiNum)==1) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

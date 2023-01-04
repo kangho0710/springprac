@@ -11,4 +11,7 @@ public interface UserInfoMapper {
 	UserInfoVO selectUserInfoById(String uiId);
 	UserInfoVO selectUserInfo(UserInfoVO userInfo); //로그인
 	int insertUserInfo(UserInfoVO userInfo);
+	
+	UserInfoVO selectUserInfoByNum(int uiNum);
+	int deleteUserInfo(int uiNum);
 }

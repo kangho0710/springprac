@@ -49,4 +49,16 @@
 		VALUES(#{uiId}, #{uiName}, #{uiPwd}, #{uiEmail}, #{uiZip}, #{uiAddr1}, #{uiAddr2}, #{uiProfile})
 	</insert>
 	
+	<select id ="selectUserInfoByNum" resultType="com.ezen.demo.vo.UserInfoVO">
+		SELECT
+		<include refid="userInfoCols"></include>
+		FROM USER_INFO
+		WHERE UI_NUM = #{uiNum}
+	</select>
+	
+	<delete id="deleteUserInfo" parameterType="com.ezen.demo.vo.UserInfoVO">
+		DELETE FROM USER_INFO
+		WHERE UI_NUM = #{uiNum}
+	</delete>
+	
 </mapper>
