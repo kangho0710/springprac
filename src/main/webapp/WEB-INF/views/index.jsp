@@ -18,7 +18,22 @@
 안녕하세요 ${userInfo.uiName }님<br>
 <a href = "/views/user-info/view">회원정보</a><br>
 <a href = "/views/board-info/boardinfolist">게시판</a>
+<button onclick = "logOut()">로그아웃</button>
 </c:if>
 
+<script>
+	function logOut(){
+		fetch('/user-infos/logout')
+		.then(function(res){
+			return res.json();
+		})
+		.then(function(data){
+			if(data === true){
+				alert('로그아웃');
+				location.href = '/';
+			}
+		})
+	}
+</script>
 </body>
 </html>
