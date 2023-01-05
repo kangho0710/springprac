@@ -17,7 +17,7 @@
 <c:if test="${userInfo ne null}">
 안녕하세요 ${userInfo.uiName }님<br>
 <a href = "/views/user-info/view">회원정보</a><br>
-<a href = "/views/board-info/boardinfolist">게시판</a>
+<a href = "/views/board-info/list">게시판</a>
 <button onclick = "logOut()">로그아웃</button>
 </c:if>
 

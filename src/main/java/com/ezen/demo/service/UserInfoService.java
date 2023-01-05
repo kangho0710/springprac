@@ -1,5 +1,7 @@
 package com.ezen.demo.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -48,8 +50,13 @@ public class UserInfoService {
 		return false;
 	}
 	
-	public boolean updateUserInfo(UserInfoVO userInfo) {
-		return userInfoMapper.updateUserInfo(userInfo)==1;
+	public boolean updateUserInfo(UserInfoVO userInfo, HttpSession session) {
+		if(userInfoMapper.updateUserInfo(userInfo)==1) {
+			UserInfoVO tmpUserInfo = userInfoMapper.selectUserInfoByNum(userInfo.getUiNum());
+			session.setAttribute("userInfo", tmpUserInfo);
+			return true;
+		}
+		return false;
 	}
 	
 }

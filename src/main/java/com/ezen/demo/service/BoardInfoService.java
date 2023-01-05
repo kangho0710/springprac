@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ezen.demo.mapper.BoardInfoMapper;
 import com.ezen.demo.vo.BoardInfoVO;
+import com.ezen.demo.vo.UserInfoVO;
 
 @Service
 public class BoardInfoService { //Service역할
@@ -18,18 +19,19 @@ public class BoardInfoService { //Service역할
 		return boardInfoMapper.selectBoardInfoList(boardInfoVO);
 	}
 	
-	public BoardInfoVO getBoardInfo(BoardInfoVO boardInfoVO) {
-		return boardInfoMapper.selectBoardInfo(boardInfoVO);
-	}
 	public int insertBoardInfo(BoardInfoVO boardInfoVO) {
 		return boardInfoMapper.insertBoardInfo(boardInfoVO);
 	}
 	
-	public int updateBoardInfo(BoardInfoVO boardInfoVO) {
-		return boardInfoMapper.updateBoardInfo(boardInfoVO);
+	public BoardInfoVO selectBoardInfo(int biNum) {
+		return boardInfoMapper.selectBoardInfo(biNum);
 	}
 	
-	public int deleteBoardInfo(int biNum) {
-		return boardInfoMapper.deleteBoardInfo(biNum);
+	public int updateBoardInfo(BoardInfoVO boardInfo) {
+		return boardInfoMapper.updateBoardInfo(boardInfo);
+	}
+	
+	public int updateBoardInfoActive(int biNum) { //active 0으로 바꿈
+		return boardInfoMapper.updateBoardInfoActive(biNum);
 	}
 }
