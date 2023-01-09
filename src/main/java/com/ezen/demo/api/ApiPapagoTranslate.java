@@ -62,11 +62,6 @@ import lombok.extern.slf4j.Slf4j;
 				return om.readValue(json, PapagoVO.class);
 		}
 		
-	    public static void main(String[] args) throws JsonMappingException, JsonProcessingException {
-	        String clientId = "kG6FLZWN_GtxurYwmtUC";//애플리케이션 클라이언트 아이디값";
-	        String clientSecret = "PoAHZb5ucm";//애플리케이션 클라이언트 시크릿값";
-	    }
-
 	    private String post(Map<String, String> requestHeaders, PapagoParamVO papagoParam){
 	        HttpURLConnection con = connect();
 	        String postParams = "source=" + papagoParam.getSource() + "&target=" + papagoParam.getTarget() + "&text=" + papagoParam.getText(); //원본언어: 한국어 (ko) -> 목적언어: 영어 (en)
