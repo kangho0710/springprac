@@ -13,6 +13,7 @@
 		<button onclick = "deleteBoardInfo()">삭제</button>
 	</div>
 	
+	
 	<script>
 		window.onload = function(){
 			fetch('/board-infos/${param.biNum}')

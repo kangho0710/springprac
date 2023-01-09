@@ -40,6 +40,7 @@ import lombok.extern.slf4j.Slf4j;
 		@Value("${papago.url}")
 		private String apiUrl;
 		
+		
 		@Value("${papago.method}")
 		private String method;
 		

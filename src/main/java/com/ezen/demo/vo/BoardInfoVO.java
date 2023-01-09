@@ -14,6 +14,7 @@ public class BoardInfoVO {
 	private String biActive;
 	private int biCnt;
 	private int uiNum;
+	
 	private String uiId;
 	
 }

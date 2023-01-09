@@ -35,6 +35,7 @@
 				.then(function(res) {
 					return res.json();
 					})
+					
 					.then(
 					function(data) {
 						document.querySelector('#biTitle').value = data.biTitle;

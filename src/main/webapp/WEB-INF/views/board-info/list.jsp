@@ -11,6 +11,7 @@
 		<input type = "text" id = "biTitle" placeholder = "제목">
 		<input type = "text" id = "biContent" placeholder = "내용">
 		<button onclick = "getBoardLists()">조회</button>
+		
 	
 	<table border = "1">
 		<tr>

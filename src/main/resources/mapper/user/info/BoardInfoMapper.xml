@@ -20,6 +20,7 @@
     	BI.BI_ACTIVE=1 <!-- active가 1인것만 표시 -->
     	<if test='biTitle!=null and biTitle!=""'>
     		AND BI_TITLE LIKE CONCAT('%',#{biTitle},'%')
+    		
     	</if>
     	<if test = 'biContent != null and biContent!=""'>
     		AND BI_CONTENT LIKE CONCAT('%',#{biContent},'%')

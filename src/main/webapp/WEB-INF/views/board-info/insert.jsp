@@ -12,6 +12,7 @@
 			<th>제목</th>
 			<td><input type = "text" id = "biTitle"></td>
 		</tr>
+		
 		<tr>
 			<th>작성자</th>
 			<td>${userInfo.uiId}</td>
