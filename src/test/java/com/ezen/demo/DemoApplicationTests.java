@@ -45,12 +45,12 @@ class DemoApplicationTests {
 		
 //		log.info("boardInfoList=>{}", boardInfoMapper.selectBoardInfoList(null));
 //		log.info("result =>{}", boardInfoMapper.updateBoardInfoActive(1));
-		BoardInfoVO board = new BoardInfoVO();
-		board.setBiTitle("단위테스트");
-		board.setBiContent("안녕");
-		board.setUiNum(8);
-		int result = boardInfoMapper.insertBoardInfo(board);
-		log.info("result=>{}", result);
+//		BoardInfoVO board = new BoardInfoVO();
+//		board.setBiTitle("단위테스트");
+//		board.setBiContent("안녕");
+//		board.setUiNum(8);
+//		int result = boardInfoMapper.insertBoardInfo(board);
+//		log.info("result=>{}", result);
 		
 	}
 
