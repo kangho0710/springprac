@@ -32,11 +32,11 @@
 					url: '/best-seller',
 					mtype: 'GET',
 					styleUI : 'Bootstrap',
-					datatype: 'jsonp',
+					datatype: 'json',
 					pager: '#gqGridpager',
 					colModel : [
 						{label:'순위', name:'bsNum', key:true, width:60},
-						{label:'제목', name:'bsTitle', key:true, width:200},
+						{label:'제목', name:'bsTitle', key:true, width:400},
 						{label:'저자', name:'bsAuthor', key:true, width:200},
 						{label:'출판사', name:'bsPublisher', key:true, width:200},
 						{label:'발행일', name:'bsDate', key:true, width:200},
@@ -44,7 +44,14 @@
 						//label: 화면에 보여지는 것
 						// key: 화면에 쓰겠다는 뜻
 						// name에는 VO에서 해당하는 것으로
-					]
+					],
+					jsonReader:{
+						root:'list',
+						page:'pageNum',
+						total:'pages'
+					},
+					height:370,
+					rowNum:10,
 			}
 			$('#jqGrid').jqGrid(config);
 		})
