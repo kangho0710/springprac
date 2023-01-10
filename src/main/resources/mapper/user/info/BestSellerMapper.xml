@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.demo.mapper.BestSellerMapper">
+	<sql id = "bestSellerCols">
+		BS_NUM, BS_TITLE, BS_URL, BS_IMG, BS_SUB_TITLE,
+		BS_AUTHOR, BS_PUBLISHER, BS_DATE, BS_CREDAT, BS_PRICE
+	</sql>
+
+<insert id="insertBestSeller">
+INSERT INTO BEST_SELLER(BS_NUM, BS_TITLE, BS_URL, BS_IMG, BS_SUB_TITLE, BS_AUTHOR, BS_PUBLISHER, BS_DATE, BS_CREDAT, BS_PRICE)
+VALUES
+	<foreach collection = "bestSellerList" item="bestSeller" separator = ",">
+	(
+	#{bestSeller.bsNum}, #{bestSeller.bsTitle}, 
+	#{bestSeller.bsUrl}, #{bestSeller.bsImg},
+	#{bestSeller.bsSubTitle}, #{bestSeller.bsAuthor}, 
+	#{bestSeller.bsPublisher}, #{bestSeller.bsDate}, 
+	DATE_FORMAT(NOW(), '%Y%m%d'), #{bestSeller.bsPrice})
+  	</foreach>
+ </insert>
+ 
+ <select id="selectBestSellerList" resultType="com.ezen.demo.vo.BestSellerVO">
+ 	SELECT
+ 	BS_NUM, BS_TITLE, BS_URL, BS_IMG, BS_SUB_TITLE,
+	BS_AUTHOR, BS_PUBLISHER, BS_DATE, BS_CREDAT, BS_PRICE
+ 	FROM BEST_SELLER
+ 	ORDER BY BS_NUM
+ </select>
+ 
+
+</mapper>

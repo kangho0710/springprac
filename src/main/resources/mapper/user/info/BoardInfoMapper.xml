@@ -12,7 +12,7 @@
 	
   <select id="selectBoardInfoList" resultType="com.ezen.demo.vo.BoardInfoVO">
     SELECT
-    <include refid = "boardInfoCols"></include>
+   <include refid="boardInfoCols"></include>
     ,UI.UI_ID
     FROM BOARD_INFO BI
     INNER JOIN USER_INFO UI ON BI.UI_NUM = UI.UI_NUM

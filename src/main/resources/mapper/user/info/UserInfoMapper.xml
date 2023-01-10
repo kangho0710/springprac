@@ -11,7 +11,8 @@
 	<!-- id중복확인용 쿼리 -->
 	<select id="selectUserInfoById" resultType="com.ezen.demo.vo.UserInfoVO">
 		SELECT
-		<include refid="userInfoCols"></include>
+		UI_NUM, UI_ID, UI_NAME, UI_PWD, UI_ZIP, UI_EMAIL, UI_ADDR1, UI_ADDR2,
+		UI_PROFILE, UI_PROFILE_IMG_PATH
 		FROM USER_INFO
 		WHERE UI_ID = #{uiId}
 	</select> 
