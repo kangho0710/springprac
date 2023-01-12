@@ -6,5 +6,4 @@ import lombok.Data;
 public class ResponseVO {
 	private HeaderVO header;
 	private BodyVO body;
-	
 }

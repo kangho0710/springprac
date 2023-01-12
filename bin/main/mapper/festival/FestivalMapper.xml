@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.demo.mapper.FestivalInfoMapper">
+	<sql id="festivalCols">
+		ADDR1, ADDR2, BOOKTOUR, CAT1, CAT2, CAT3, CONTENTID,
+		CONTENTTYPEID,
+		CREATEDTIME, EVENTSTARTTIME, FIRSTIMAGE, FIRSTIMAGE2
+		,MAPX, MAPY, MLEVEL, MODIFIEDTIME, READCOUNT, AREACODE, SIGUNGUCODE,
+		TEL,
+		TITLE
+	</sql>
+
+	<insert id="insertFestivalInfos">
+		INSERT INTO FESTIVAL_INFO
+		(
+		<include refid="festivalCols"></include>
+		)
+		VALUES
+		<foreach collection="festivalList" item="festival" separator=",">
+			(#{festival.addr1}, #{festival.addr2}, #{festival.booktour}, #{festival.cat1},
+			#{festival.cat2}, #{festival.cat3}, #{festival.contentid},
+			#{festival.contenttypeid}
+			, #{festival.createdtime}, #{festival.eventstartdate},
+			#{festival.firstimage}, #{festival.firstimage2}
+			, #{festival.mapx}, #{festival.mapy}, #{festival.mlevel},
+			#{festival.modifiedtime},
+			#{festival.readcount}, #{festival.areacode}, #{festival.sigungucode}, #{festival.tel},
+			#{festival.title})
+		</foreach>
+	</insert>
+	
+	<insert id="insertFestivalInfo">
+		INSERT INTO FESTIVAL_INFO
+		(
+		<include refid="festivalCols"></include>
+		)
+		VALUES
+			(#{festival.addr1}, #{festival.addr2}, #{festival.booktour}, #{festival.cat1},
+			#{festival.cat2}, #{festival.cat3}, #{festival.contentid},
+			#{festival.contenttypeid}, #{festival.createdtime}, #{festival.eventstartdate},
+			#{festival.firstimage}, #{festival.firstimage2}, #{festival.mapx}, #{festival.mapy}, #{festival.mlevel},
+			#{festival.modifiedtime},
+			#{festival.readcount}, #{festival.areacode}, #{festival.sigungucode}, #{festival.tel},
+			#{festival.title}
+			)
+	</insert>
+	
+	<select id="selectFestivalInfos" resultType="com.ezen.demo.vo.fetival.FestivalInformationVO">
+		SELECT
+		<include refid="festivalCols"></include>
+		FROM FESTIVAL_INFO
+	</select>
+
+</mapper>

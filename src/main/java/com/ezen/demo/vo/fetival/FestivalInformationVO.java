@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class FestivalInformationVO {
-	
+	private int num;
 	private String addr1;
 	private String addr2;
 	private String booktour;
@@ -13,7 +13,7 @@ public class FestivalInformationVO {
 	private String cat3;
 	private String contentid;
 	private String contenttypeid;
-	private String createtime;
+	private String createdtime;
 	private String eventstartdate;
 	private String eventenddate;
 	private String firstimage;
@@ -22,7 +22,7 @@ public class FestivalInformationVO {
 	private String mapy;
 	private String mlevel;
 	private String modifiedtime;
-	private String readcount;
+	private int readcount;
 	private String areacode;
 	private String sigungucode;
 	private String tel;

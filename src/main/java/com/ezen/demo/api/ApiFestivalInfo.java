@@ -1,6 +1,32 @@
 package com.ezen.demo.api;
 
+import java.net.URI;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+import com.ezen.demo.config.SSLConfig;
+import com.ezen.demo.vo.fetival.FestivalResultVO;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Component
+@Slf4j
 public class ApiFestivalInfo {
-	private static String url = "https://apis.data.go.kr/B551011/KorService/searchFestival?serviceKey=ifyooOA8kX%2FOJ%2Ffq7znyZl%2BNNJQ%2BFvCQa%2F4fthZxvSapzlVyNcCw4mo4DZeynG1SiBhS7GlFA5ZiJaI%2FK4U%2F1w%3D%3D&numOfRows=1000&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&arrange=A&eventStartDate=20220601";
+	@Autowired
+	private RestTemplate restTemplate;
 	
+	public <T> T getData(String url, Class<T> clazz) {
+		try {
+			URI uri = new URI(url);
+			ResponseEntity<T> response = restTemplate.getForEntity(uri, (Class<T>)clazz);
+			return response.getBody();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

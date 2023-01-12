@@ -8,5 +8,4 @@ import lombok.Data;
 public class FestivalResultVO {
 	@Autowired
 	private ResponseVO response;
-	
 }
