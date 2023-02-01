@@ -18,20 +18,36 @@
 <body>
 	<table>
 		<tr>
+			<td>작성자</td>
+			<td><input type="text" id="tbWriter" name="writer"></td>
+		</tr>
+		<tr>
 			<td>제목</td>
-			<td><input type="text" id="biTitle" name="subject"></td>
+			<td><input type="text" id="tbTitle" name="subject"></td>
 		</tr>
 		<tr>
-			<th>작성자</th>
-			<td>${userInfo.uiId}</td>
+			<td>지역</td>
+			<td><select id="tbRegion">
+					<option value = "서울">서울</option>
+					<option value = "인천">인천</option>
+				</select>
+			</td>
 		</tr>
 		<tr>
-			<td colspan="2"><textarea class="summernote" id="biContent" name="memo"></textarea>
+			<td>취미</td>
+			<td><select id="tbCategory">
+					<option value = "soccer">축구</option>
+					<option value = "baseball">야구</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><textarea class="summernote" id="tbContent" name="memo"></textarea>
 			</td>
 		</tr>
 		<tr>
 			<th colspan = "2">
-				<button onclick = "updateBoardInfo()">등록</button>
+				<button onclick = "insertBoard()">등록</button>
 			</th>
 		</tr>
 	</table>
@@ -58,7 +74,7 @@
 		});
 		
 		window.onload = function() {
-			fetch('/board-infos/${param.biNum}')
+			fetch('/board-infos/${param.tNum}')
 				.then(function(res) {
 					return res.json();
 					})
