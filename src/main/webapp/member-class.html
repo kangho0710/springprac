@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.leftDiv{
+		width: 45%;
+		float:left;
+	}
+	.rightDiv{
+		width: 45%;
+		float: right;
+	}
+</style>
+
+</head>
+<body>
+<div class="leftDiv">
+	<table border="1">
+		<tr>
+			<td colspan ="3" align="right">
+			<button onclick="addMember()">추가</button>
+		</tr>
+		<tr>
+			<th>번호</th>
+			<th>아이디</th>
+			<th>이메일</th>
+		</tr>
+		<tbody id="member"></tbody>
+		<tbody>
+		 <tr>
+			<th colspan ="3" align="right"><button onclick="saveMember()">저장</button></th>
+		 </tr>
+		</tbody>
+	</table>
+</div>
+	
+<div class="rightDiv">
+	<table border="1">
+		<tr>
+			<td colspan ="3" align="right">
+			<button onclick="addClass()">추가</button>
+		</tr>
+		<tr>
+			<th>번호</th>
+			<th>클래스명</th>
+			<th>클래스 설명</th>
+		</tr>
+		<tbody id="class"></tbody>
+		<tbody>
+		 <tr>
+			<th colspan ="3" align="right"><button onclick="saveClass()">저장</button></th>
+		 </tr>
+		</tbody>
+	</table>
+</div>
+	<script>
+		async function saveMember(){
+			let params =[];
+			const miIdObjs = document.querySelectorAll('input[name="miId"]');
+			const miEmailObjs = document.querySelectorAll('input[name="miEmail"]');
+			for(let i = 0; i<miIdObjs.length; i++){
+				const miIdObj = miIdObjs[i];
+				const miEmailObj = miEmailObjs[i];
+				const param = {
+						miId : miIdObj.value,
+						miEmail : miEmailObj.value
+				}
+				params.push(param);
+			}
+			console.log(params);
+			const insertRes = await fetch('/member-insert',{
+				method:'POST',
+				body : JSON.stringify(params),
+				headers :{
+					'Content-Type':'application/json;charset=UTF-8'
+				}
+			});
+			const result = await insertRes.json();
+			if(result===params.length){
+				alert('성공');
+				await getMemberInfo();
+			}
+		}
+		
+		async function saveClass(){
+			let params = [];
+			const ciNameObjs = document.querySelectorAll('input[name="ciName"]');
+			const ciDescObjs = document.querySelectorAll('input[name="ciDesc"]');
+			for(let i = 0; i<ciNameObjs.length; i++){
+				
+				const ciNameObj = ciNameObjs[i];
+				const ciDescObj = ciDescObjs[i];
+				const param = {
+						ciName : ciNameObj.value,
+						ciDesc : ciDescObj.value
+				}
+				params.push(param);
+			}
+			const insertRes = await fetch('/class-insert',{
+				method:'POST',
+				body:JSON.stringify(params),
+				headers:{
+				  'Content-Type':'application/json;charset=UTF-8'
+				}
+			});
+			const result = await insertRes.json();
+			if(result===params.length){
+				alert('성공');
+				await getClassInfo();
+			}
+		}
+		
+		
+			
+		function addMember(){
+			let html = '<tr>';
+			html +='<tr>'
+			html +='<td>&nbsp;</td>';
+			html +='<td><input type="text" name="miId"></td>';
+			html +='<td><input type="text" name="miEmail"></td>';
+			html +='</tr>';
+			document.querySelector('#member').innerHTML += html;
+		}
+		
+		function addClass(){
+			let html = '<tr>';
+			html +='<tr>'
+			html +='<td>&nbsp;</td>';
+			html +='<td><input type="text" name="ciName"></td>';
+			html +='<td><input type="text" name="ciDesc"></td>';
+			html +='</tr>';
+			document.querySelector('#class').innerHTML += html;
+		}
+		
+		async function getMemberInfo(){
+			const memberInfoRes = await fetch('/member-list');
+			const memberInfos = await memberInfoRes.json(); //페치에서 뽑아온 것을 json으로 바꿔
+			let html = '';
+			for(const memberInfo of memberInfos){
+				html += '<tr>';
+				html +='<td>' + memberInfo.miNum + '</td>'
+				html +='<td>' + memberInfo.miId + '</td>';
+				html +='<td>' + memberInfo.miEmail + '</td>';
+				html += '</tr>';
+			}
+			document.querySelector('#member').innerHTML = html;
+		}
+		
+		
+		async function getClassInfo(){
+			const classInfoRes = await fetch('/class-list');
+			const classInfos = await classInfoRes.json(); //페치에서 뽑아온 것을 json으로 바꿔
+			let html = '';
+			for(const classInfo of classInfos){
+				html += '<tr>';
+				html +='<td>' + classInfo.ciNum + '</td>'
+				html +='<td>' + classInfo.ciName + '</td>';
+				html +='<td>' + classInfo.ciDesc + '</td>';
+				html += '</tr>';
+			}
+			document.querySelector('#class').innerHTML = html;
+		}
+		window.addEventListener('load', async function(){
+			await getMemberInfo();
+			await getClassInfo();
+		})
+	</script>
+</body>
+</html>

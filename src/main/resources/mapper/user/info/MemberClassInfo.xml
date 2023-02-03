@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.demo.mapper.MemberClassMapper">
+	<select id="selectMemberInfo" resultType="com.ezen.demo.vo.MemberInfoVO">
+		SELECT * FROM MEMBER_INFO
+	</select>
+	
+	<select id="selectMemberInfoByMiNum" resultType="com.ezen.demo.vo.MemberInfoVO">
+		SELECT * FROM MEMBER_INFO WHERE MI_NUM =#{miNum} OR MI_EMAIL = #{miEmail}
+	</select>
+	
+	
+	<select id="selectClassInfo" resultType="com.ezen.demo.vo.ClassInfoVO">
+		SELECT * FROM CLASS_INFO
+	</select>
+	
+	<select id="selectClassInfoByCiNum" resultType="com.ezen.demo.vo.ClassInfoVO">
+		SELECT * FROM MEMBER_INFO WHERE MI_NUM =#{miNum} OR MI_EMAIL = #{miEmail}
+	</select>
+	
+	<select id="selectMemberInfoClassInfoMap" resultType="com.ezen.demo.vo.MemberInfoClassInfoMapVO">
+		SELECT * FROM MEMBER_
+	</select>
+	
+	<insert id="insertMemberInfo" parameterType="com.ezen.demo.vo.MemberInfoVO">
+		INSERT INTO MEMBER_INFO(MI_ID, MI_EMAIL)
+		VALUES(#{miId}, #{miEmail})
+	</insert>
+	
+	<insert id="inserClassInfo" parameterType="com.ezen.demo.vo.ClassInfoVO">
+		INSERT INTO CLASS_INFO(CI_NAME, CI_DESC)
+		VALUES(#{ciName}, #{ciDesc})
+	</insert>
+	
+	<insert id="insertMemberInfoClassInfoMap" parameterType="com.ezen.demo.vo.MemberInfoClassInfoMapVO">
+		INSERT INTO MEMBER_INFO_CLASS_INFO_MAP(MI_NUM, CI_NUM)
+		VALUES(#{miNum}, #{ciNum})
+	</insert>
+	
+</mapper>
