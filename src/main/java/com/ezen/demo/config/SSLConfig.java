@@ -30,7 +30,6 @@ public class SSLConfig {
 
             @Override
             public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-                //TrustStrategy acceptingTrustStrategy = (X509Certificate[] chain, String authType) -> true;
                 return true;
             }
         });

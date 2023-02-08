@@ -44,7 +44,7 @@ public class MemberClassController {
 	}
 	
 	@PostMapping("/member-class-info-insert")
-	public int insertMemberInfoClassInfoMap(MemberInfoClassInfoMapVO memberInfoClssInfoMap) {
-		return memberClassService.insertMemberInfoClassInfoMap(memberInfoClssInfoMap);
+	public int insertMemberInfoClassInfoMap(@RequestBody List<MemberInfoClassInfoMapVO> memberInfoClassInfoMap) {
+		return memberClassService.insertMemberInfoClassInfoMap(memberInfoClassInfoMap);
 	}
 }

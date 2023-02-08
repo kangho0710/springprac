@@ -4,7 +4,15 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ezen.demo.mapper.MemberClassMapper">
 	<select id="selectMemberInfo" resultType="com.ezen.demo.vo.MemberInfoVO">
-		SELECT * FROM MEMBER_INFO
+		SELECT * FROM MEMBER_INFO MI
+		<where>
+			<if test = 'ciNum !=0'>
+				EXISTS
+				(SELECT 1 FROM MEMBER_INFO_CLASS_INFO_MAP MCM
+				WHERE MCM.CI_NUM=#{ciNum}
+				AND MI.MI_NUM = MCM.MI_NUM)
+			</if>
+		</where>
 	</select>
 	
 	<select id="selectMemberInfoByMiNum" resultType="com.ezen.demo.vo.MemberInfoVO">
@@ -13,7 +21,9 @@
 	
 	
 	<select id="selectClassInfo" resultType="com.ezen.demo.vo.ClassInfoVO">
-		SELECT * FROM CLASS_INFO
+		SELECT CI.*,(SELECT COUNT(1) FROM MEMBER_INFO_CLASS_INFO_MAP MCM
+		WHERE MCM.CI_NUM = CI.CI_NUM) CI_CNT
+		FROM CLASS_INFO CI;
 	</select>
 	
 	<select id="selectClassInfoByCiNum" resultType="com.ezen.demo.vo.ClassInfoVO">

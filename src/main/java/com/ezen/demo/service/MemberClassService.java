@@ -43,14 +43,18 @@ public class MemberClassService {
 		int result = 0;
 		for(ClassInfoVO classInfo : classInfos) {
 			if(memberClassMapper.selectClassInfoByCiNum(classInfo)!=null) {
-				throw new RuntimeException("멤버가 중복되었습니다");
+				throw new RuntimeException("클래스가 중복되었습니다");
 			}
 			result+= memberClassMapper.inserClassInfo(classInfo);
 		}
 		return result;
 	}
 	
-	public int insertMemberInfoClassInfoMap(MemberInfoClassInfoMapVO memberInfoClssInfoMap) {
-		return memberClassMapper.insertMemberInfoClassInfoMap(memberInfoClssInfoMap);
+	public int insertMemberInfoClassInfoMap(List<MemberInfoClassInfoMapVO> memberInfoClassInfoMap) {
+		int result = 0;
+		for(MemberInfoClassInfoMapVO memberInfoClassMap : memberInfoClassInfoMap) {
+			result += memberClassMapper.insertMemberInfoClassInfoMap(memberInfoClassMap);
+		}
+		return result;
 	}
 }

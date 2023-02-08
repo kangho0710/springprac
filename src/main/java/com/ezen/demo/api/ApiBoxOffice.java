@@ -33,16 +33,13 @@ import lombok.extern.slf4j.Slf4j;
 	@Slf4j
 	@PropertySource("classpath:env.properties")
 	public class ApiBoxOffice {
-		@Value("${movie.url}")
 		private String movieUrl = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=123814aabd95d7a78fb2ddad62733508&targetDt=";
 		@Autowired
 		ObjectMapper om;
-		private int cnt = 1;
 		
 		public List<BoxOfficeVO> getBoxOfficeList(int max) {
 			Instant now = Instant.now();	
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-			String movieUrl = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=123814aabd95d7a78fb2ddad62733508&targetDt=";
 			List<BoxOfficeVO> allBoxOfficeList = new ArrayList<>();
 			
 			for(int i=1; i<=max; i++) {

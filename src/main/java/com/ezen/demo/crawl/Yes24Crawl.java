@@ -29,7 +29,6 @@ public class Yes24Crawl {
 		for(int i=1; i<=5; i++) {
 		try {
 			Document document = Jsoup.connect(yes24Url+i).get();
-//			log.debug("yes html=>{}", document.html());
 			Elements els = document.select("#category_layout tr"); //document.querySelectorAll
 			for(Element el : els) {
 				Element imgEl =  el.selectFirst("td.image img"); //document.querylSelector 이미지
@@ -37,13 +36,12 @@ public class Yes24Crawl {
 					Element numEl = el.selectFirst("td.num"); //번호
 					Element titleEl =  el.selectFirst("td.goodsTxtInfo p a"); //document.querylSelector 제목
 					Element pEl = el.selectFirst("td.goodsTxtInfo p"); //서브타이틀
-					Element aupuEl = el.selectFirst("td.goodsTxtInfo>div.aupu");
-//					log.debug("aupuEl=>{}", aupuEl);
+					/* Element aupuEl = el.selectFirst("td.goodsTxtInfo>div.aupu"); */
 					Element authorEl = el.selectFirst("td.goodsTxtInfo .aupu a");//작가
 					
 					Element dateEl =  el.selectFirst("td .aupu ");//발행일
 					Element companyEl = (Element) el.selectFirst("td.goodsTxtInfo .aupu").childNode(3); //출판사
-					Element linkEl = el.selectFirst("td.image a"); //링크
+//					Element linkEl = el.selectFirst("td.image a"); //링크
 					Element secPEl = el.selectFirst("td.goodsTxtInfo p:nth-child(3)"); //가격
 					
 					BestSellerVO bsVO = new BestSellerVO();
@@ -76,10 +74,6 @@ public class Yes24Crawl {
 					
 					String url = "http://www.yes24.com" + titleEl.attr("href").trim();
 					bsVO.setBsUrl(url);
-//					log.debug("num=>{}",num);
-//					log.debug("title=>{}",title);
-//					log.debug("bbVO=>{}", bsVO);
-//					log.debug("date=>{}",date);
 					bestSellerList.add(bsVO);
 				}
 			}
@@ -87,7 +81,7 @@ public class Yes24Crawl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	} //end of for(5)
+	} 
 	
 	return bestSellerList;
 	}

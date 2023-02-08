@@ -12,6 +12,14 @@
 		width: 45%;
 		float: right;
 	}
+	table{
+		width: 100%;
+	}
+	.clear{
+		width:0px;
+		height:0px;
+		clear:both;
+	}
 </style>
 
 </head>
@@ -39,23 +47,95 @@
 <div class="rightDiv">
 	<table border="1">
 		<tr>
-			<td colspan ="3" align="right">
+			<td colspan ="4" align="right">
 			<button onclick="addClass()">추가</button>
 		</tr>
 		<tr>
 			<th>번호</th>
 			<th>클래스명</th>
 			<th>클래스 설명</th>
+			<th>수강인원</th>
 		</tr>
 		<tbody id="class"></tbody>
 		<tbody>
 		 <tr>
-			<th colspan ="3" align="right"><button onclick="saveClass()">저장</button></th>
+			<th colspan ="4" align="right"><button onclick="saveClass()">저장</button></th>
+		 </tr>
+		</tbody>
+	</table>
+</div>
+<div class="clear"></div>
+
+<div class="centerDiv">
+	<table border="1">
+		<tr>
+			<td colspan ="4" align="right">
+			<button onclick="addMemberClassMap()">추가</button>
+		</tr>
+		<tr>
+			<th>번호</th>
+			<th>클래스 선택</th>
+			<th>유저선택</th>
+		</tr>
+		<tbody id="memberClassMap"></tbody>
+		<tbody>
+		 <tr>
+			<th colspan ="4" align="right"><button onclick="saveMemberClassMap()">저장</button></th>
 		 </tr>
 		</tbody>
 	</table>
 </div>
 	<script>
+	const members = [];
+	const classes = [];
+	
+	
+		function addMemberClassMap(){
+			let html = '<tr>';
+			html +='<tr>'
+			html +='<td>&nbsp;</td>';
+			html +='<td><select name="miNum">';
+			for(const member of members){
+				html +='<option value="'+member.miNum +'">'+member.miId + '</option>'
+			}
+			html +='</select></td>';
+			html +='<td><select name="ciNum">;'
+			for(const clazz of classes){
+				html +='<option value="' + clazz.ciNum + '">' + clazz.ciName + '</option>';
+			}
+			html +='</select></td>';
+			html +='</tr>';
+			document.querySelector('#memberClassMap').innerHTML += html;
+		}
+		
+		async function saveMemberClassMap(){
+			let params = [];
+			const miObjs = document.querySelectorAll('select[name="miNum"]');
+			const ciObjs = document.querySelectorAll('select[name="ciNum"]');
+			for(let i=0; i<miObjs.length; i++){
+				const miObj = miObjs[i];
+				const ciObj = ciObjs[i];
+				const param = {
+						miNum : miObj.value,
+						ciNum : ciObj.value
+				}
+				params.push(param);
+				console.log(params);
+				const insert = await fetch('/member-class-info-insert',{
+					method:'POST',
+					body:JSON.stringify(params),
+					headers:{
+					  'Content-Type':'application/json;charset=UTF-8'
+					}
+				});
+				const result = await insert.json();
+				if(result === params.length){
+					alert('성공');
+					location.reload();
+				}
+			}
+		}
+	
 		async function saveMember(){
 			let params =[];
 			const miIdObjs = document.querySelectorAll('input[name="miId"]');
@@ -134,9 +214,20 @@
 			document.querySelector('#class').innerHTML += html;
 		}
 		
-		async function getMemberInfo(){
-			const memberInfoRes = await fetch('/member-list');
-			const memberInfos = await memberInfoRes.json(); //페치에서 뽑아온 것을 json으로 바꿔
+		async function getMemberInfo(ciNum){
+			let param = ciNum ? '?ciNum=' + ciNum : '';
+			const memberInfoRes = await fetch('/member-list' + param);
+			return await memberInfoRes.json(); //페치에서 뽑아온 것을 json으로 바꿔
+			
+		}
+		
+		async function innerHTMLMember(){
+			const memberInfos = await getMemberInfo();
+			if(!members.length){
+				memberInfos.forEach((memberInfo)=>{
+					members.push(memberInfo);
+				});
+			}
 			let html = '';
 			for(const memberInfo of memberInfos){
 				html += '<tr>';
@@ -151,20 +242,33 @@
 		
 		async function getClassInfo(){
 			const classInfoRes = await fetch('/class-list');
-			const classInfos = await classInfoRes.json(); //페치에서 뽑아온 것을 json으로 바꿔
+			return await classInfoRes.json(); //페치에서 뽑아온 것을 json으로 바꿔
+			
+		}
+		
+		async function innerHTMLClass(){
+			const classInfos = await getClassInfo();
+			if(!classes.length){
+				classInfos.forEach((classInfo)=>{
+					classes.push(classInfo);
+				})
+			}
 			let html = '';
 			for(const classInfo of classInfos){
 				html += '<tr>';
 				html +='<td>' + classInfo.ciNum + '</td>'
 				html +='<td>' + classInfo.ciName + '</td>';
 				html +='<td>' + classInfo.ciDesc + '</td>';
+				html +='<td><a href="javascript:void(0); getMemberInfo('+classInfo.ciNum+')">' + classInfo.ciCnt + '</a></td>';
 				html += '</tr>';
 			}
 			document.querySelector('#class').innerHTML = html;
 		}
+		
 		window.addEventListener('load', async function(){
-			await getMemberInfo();
-			await getClassInfo();
+			
+			await innerHTMLMember();
+			await innerHTMLClass();
 		})
 	</script>
 </body>

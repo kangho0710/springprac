@@ -33,19 +33,15 @@ public class UserInfoService {
 	
 	public boolean checkPassword(UserInfoVO userInfo, int uiNum) {
 		UserInfoVO tempUserInfo = userInfoMapper.selectUserInfoByNum(uiNum);
-		if(tempUserInfo !=null) {
-			if(SHA256.encode(userInfo.getUiPwd()).equals(tempUserInfo.getUiPwd())) {
-				return true;
-			}
+		if(tempUserInfo !=null && SHA256.encode(userInfo.getUiPwd()).equals(tempUserInfo.getUiPwd())) {
+		 return true;
 		}
 		return false;
 	}
 	
 	public boolean deleteUserInfo(UserInfoVO userInfo, int uiNum) {
-		if(checkPassword(userInfo, uiNum)) {
-			if(userInfoMapper.deleteUserInfo(uiNum)==1) {
+		if(checkPassword(userInfo, uiNum) && userInfoMapper.deleteUserInfo(uiNum)==1) {
 				return true;
-			}
 		}
 		return false;
 	}

@@ -28,7 +28,7 @@ public class WikiCrawlingTest {
 				}
 				String name = tdEls.get(cnt++).text();
 				String year = tdEls.get(cnt++).text();
-				String salesCnt = tdEls.get(cnt++).text().replace("+","").replace(",","");
+				String salesCnt = tdEls.get(cnt).text().replace("+","").replace(",","");
 				AlbumVO album = new AlbumVO();
 				album.setRank(Integer.parseInt(rank));
 				album.setYear(year);

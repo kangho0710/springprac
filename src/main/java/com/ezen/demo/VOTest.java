@@ -34,7 +34,7 @@ class ListVO{
 
 @Slf4j
 public class VOTest {
-	public static void main(String[] args) throws JsonMappingException, JsonProcessingException {
+	public static void main(String[] args) throws JsonProcessingException {
 		ObjectMapper om = new ObjectMapper();
 		String json = "{\r\n"
 				+ "  \"drink\": {\r\n"
@@ -61,9 +61,6 @@ public class VOTest {
 				+ "}\r\n";
 		DataVO data = om.readValue(json, DataVO.class);
 		log.info("data=>{}", data);
-//		Map<String, Object> map = null;
-//		map = om.readValue(json, Map.class);
-//		log.info("data=>{}", map);
 		
 	}
 	

@@ -7,4 +7,6 @@ public class MemberInfoVO {
 	private int miNum;
 	private String miId;
 	private String miEmail;
+	
+	private int ciNum;
 }

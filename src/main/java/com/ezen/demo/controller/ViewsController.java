@@ -12,7 +12,6 @@ public class ViewsController {
 	}
 	
 	@GetMapping("/views/**") //화면만 이동할거면 굳이 하나씩 매핑할 필요 없음
-	public void goPage() {
-		
+	public void goPage() { //매핑할때 /views생략
 	}
 }
