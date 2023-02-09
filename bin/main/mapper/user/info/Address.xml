@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.demo.mapper.AddressMapper">
+	<select id="selectSidoList" resultType="com.ezen.demo.vo.SidoVO">
+		SELECT * FROM SIDO
+	</select>
+	
+	<select id="selectGugunList" resultType="com.ezen.demo.vo.GugunVO">
+		SELECT * FROM GUGUN
+		<where>
+			<if test="siNum!=null and siNum !=0">
+				AND SI_NUM = #{siNum}
+			</if>
+		</where>
+		
+	</select>
+	
+	<select id="selectDongList" resultType="com.ezen.demo.vo.DongVO">
+		SELECT * FROM DONG
+		<where>
+			<if test="doNum!=null and doNum != 0">
+				AND DO_NUM = #{doNum}
+			</if>
+		</where>
+		
+	</select>
+  
+  	<select id="addressList" resultType="com.ezen.demo.vo.AddressVO">
+  	 	SELECT SI.SI_NAME, GU.GU_NAME, DO_NUM, DONG FROM
+		SIDO SI
+		INNER JOIN GUGUN GU ON SI.SI_NUM = GU.SI_NUM
+		INNER JOIN DONG D ON GU.GU_NUM = D.GU_NUM;
+  	</select>
+</mapper>
